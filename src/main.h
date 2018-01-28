@@ -103,7 +103,6 @@ inline unsigned int GetTargetSpacing(int nHeight) { return 128; } // Targetted b
     height: 3449250, award: 250000
     height: 3695625+, award: 10
 */
-}
 
 
 extern CScript COINBASE_FLAGS;
