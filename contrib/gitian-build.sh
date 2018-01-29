@@ -274,9 +274,9 @@ then
             echo ""
 	    echo "Compiling ${VERSION} Linux"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit bitcoin=${COMMIT} --url bitcoin=${url} ../bitcoin/contrib/gitian-descriptors/gitian-linux.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../bitcoin/contrib/gitian-descriptors/gitian-linux.yml
-	    mv build/out/bitcoin-*.tar.gz build/out/src/bitcoin-*.tar.gz ../bitcoin-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit ClubCoin=${COMMIT} --url ClubCoin=${url} ../ClubCoin/contrib/gitian-descriptors/gitian-linux.yml
+	    #./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-linux --destination ../gitian.sigs/ ../bitcoin/contrib/gitian-descriptors/gitian-linux.yml
+	    mv build/out/ClubCoin-*.tar.gz build/out/src/ClubCoin-*.tar.gz ../ClubCoin-binaries/${VERSION}
 	fi
 	# Windows
 	if [[ $windows = true ]]
@@ -284,10 +284,10 @@ then
 	    echo ""
 	    echo "Compiling ${VERSION} Windows"
 	    echo ""
-	    ./bin/gbuild -j ${proc} -m ${mem} --commit bitcoin=${COMMIT} --url bitcoin=${url} ../bitcoin/contrib/gitian-descriptors/gitian-win.yml
-	    ./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../bitcoin/contrib/gitian-descriptors/gitian-win.yml
-	    mv build/out/bitcoin-*-win-unsigned.tar.gz inputs/bitcoin-win-unsigned.tar.gz
-	    mv build/out/bitcoin-*.zip build/out/bitcoin-*.exe ../bitcoin-binaries/${VERSION}
+	    ./bin/gbuild -j ${proc} -m ${mem} --commit ClubCoin=${COMMIT} --url ClubCoin=${url} ../ClubCoin/contrib/gitian-descriptors/gitian-win.yml
+	    #./bin/gsign -p $signProg --signer $SIGNER --release ${VERSION}-win-unsigned --destination ../gitian.sigs/ ../bitcoin/contrib/gitian-descriptors/gitian-win.yml
+	    mv build/out/clubcoin-*-win-unsigned.tar.gz inputs/ClubCoin-win-unsigned.tar.gz
+	    mv build/out/clubcoin-*.zip build/out/clubcoin-*.exe ../ClubCoin-binaries/${VERSION}
 	fi
 	# Mac OSX
 	if [[ $osx = true ]]
@@ -302,19 +302,19 @@ then
 	fi
 	popd
 
-        if [[ $commitFiles = true ]]
-        then
-	    # Commit to gitian.sigs repo
-            echo ""
-            echo "Committing ${VERSION} Unsigned Sigs"
-            echo ""
-            pushd gitian.sigs
-            git add ${VERSION}-linux/${SIGNER}
-            git add ${VERSION}-win-unsigned/${SIGNER}
-            git add ${VERSION}-osx-unsigned/${SIGNER}
-            git commit -a -m "Add ${VERSION} unsigned sigs for ${SIGNER}"
-            popd
-        fi
+#        if [[ $commitFiles = true ]]
+#        then
+#	    # Commit to gitian.sigs repo
+#            echo ""
+#            echo "Committing ${VERSION} Unsigned Sigs"
+#            echo ""
+#            pushd gitian.sigs
+#            git add ${VERSION}-linux/${SIGNER}
+#            git add ${VERSION}-win-unsigned/${SIGNER}
+#            git add ${VERSION}-osx-unsigned/${SIGNER}
+#            git commit -a -m "Add ${VERSION} unsigned sigs for ${SIGNER}"
+#            popd
+#        fi
 fi
 
 # Verify the build
